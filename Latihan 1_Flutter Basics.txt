@@ -1,0 +1,163 @@
+Tugas Latihan 1
+
+1. Bagaimana cara membuat project Flutter menggunakan terminal/cmd?
+	1. Buka terminal atau command prompt.
+	2. Jalankan perintah flutter create nama_project.
+	3. Akses direktori project dengan cd nama_project.
+	4. Jalankan aplikasi Flutter dengan flutter run.
+2. Apa aturan dalam memberikan nama project pada Flutter?
+	- Tidak boleh menggunakan kata-kata yang sudah digunakan oleh Dart (misalnya if, else, class).
+	- Harus diawali dengan huruf kecil.
+	- Tidak boleh mengandung spasi, harus menggunakan underscore (_) sebagai pengganti spasi.
+	- Sebaiknya gunakan nama yang deskriptif dan mudah dimengerti.
+3. Apa saja folder yang secara khusus disiapkan oleh Flutter untuk menjalankan aplikasi pada platform tertentu?
+	- android/ untuk pengaturan aplikasi Android.
+	- ios/ untuk pengaturan aplikasi iOS.
+ 	- web/ untuk pengaturan aplikasi web.
+ 	- linux/, macos/, windows/ untuk pengaturan pada platform desktop tersebut.
+4. Apa fungsi dari folder .dart_tools dan .idea?
+	- Folder .dart_tool sendiri berisi konfigurasi dart package yang di generate oleh flutter.
+	- Folder .idea ini menyimpan beberapa konfigurasi untuk android studio.
+5. Bagaimana cara membuka project Flutter menggunakan Visual Studio Code?
+	1. Buka Visual Studio Code.
+	2. Pilih File > Open Folder.
+	3. Navigasikan ke direktori project Flutter Anda dan pilih Open.
+6. Mengapa kita perlu memastikan Android SDK terinstall untuk menjalankan aplikasi Flutter di sistem operasi Android?
+	karena Flutter menggunakan Android SDK untuk mengkompilasi kode Dart ke APK yang dapat dijalankan di Android.
+	Tanpa Android SDK, Flutter tidak dapat membuat atau menjalankan aplikasi Android.
+7. Apa langkah-langkah untuk mengatasi masalah "Android Toolchain error" pada perintah flutter doctor?
+	1. Pastikan Android SDK terinstal.
+	2. Setel variabel lingkungan ANDROID_HOME atau ANDROID_SDK_ROOT ke lokasi instalasi Android SDK.
+	3. Jalankan flutter doctor lagi untuk memeriksa apakah masalah telah teratasi.
+	4. Jika perlu, instal Android SDK Platform-Tools melalui Android Studio atau SDK manager.
+8. Bagaimana cara menambahkan Android SDK Command-line tools melalui Android Studio?
+	1. Buka Android Studio.
+	2. Buka Settings atau Preferences (untuk macOS).
+	3. Navigasikan ke Appearance & Behavior > System Settings > Android SDK.
+	4. Pilih tab SDK Tools.
+	5. Centang Android SDK Command-line Tools dan klik OK untuk menginstal.
+9. Apa fungsi dari file .gitignore dalam struktur folder Flutter?
+	File .gitignore digunakan untuk memberitahu Git tentang file atau direktori yang harus diabaikan dan tidak ditracking.
+10. Mengapa file pubspec.yaml sangat penting dalam pengembangan aplikasi Flutter?
+	File pubspec.yaml berisi metadata project Flutter, seperti nama project, deskripsi, versi, dependensi (libraries, fonts, images), dan konfigurasi lain yang dibutuhkan untuk project.
+11. Apa yang dimaksud dengan widget dalam konteks Flutter?
+	Widget adalah blok bangunan dasar dari UI aplikasi Flutter.
+12. Bagaimana pewarisan (inheritance) digunakan dalam pembuatan widget Flutter?
+	dengan mewarisi (inherit) kelas widget lain. memungkinkan pembuatan widget yang dapat menyederhanakan pembuatan UI dengan menggabungkan, memodifikasi, atau menyesuaikan perilaku dari widget yang sudah ada.
+13. Apa peran widget MaterialApp dalam pembuatan aplikasi Flutter?
+	digunakan untuk mengonfigurasi dan menentukan komponen utama aplikasi seperti tema, navigasi (routes), dan home screen.
+14. Mengapa kita membutuhkan fungsi runApp untuk menjalankan aplikasi Flutter?
+	untuk mengambil widget root dari aplikasi Flutter dan membuatnya menjadi konten tampilan.
+15. Apa kegunaan widget Scaffold dalam struktur aplikasi Flutter?
+	menyediakan struktur dasar untuk layout material design, termasuk app bar, body, floating action button, drawer, dan lain-lain
+16. Bagaimana cara menambahkan app bar dan body pada widget Scaffold?
+
+Scaffold(
+  appBar: AppBar(
+    title: Text('Judul App'),
+  ),
+  body: Center(
+    child: Text('Hello, World!'),
+  ),
+)
+
+17. Apa perbedaan antara Stateless Widget dan Stateful Widget?
+	- Stateless Widget: Widget yang tidak memerlukan state internal, isi atau konfigurasinya tidak berubah sepanjang waktu.
+	- Stateful Widget: Widget yang memiliki state internal yang bisa berubah, digunakan untuk widget yang interaktif atau data yang berubah sepanjang waktu.
+18. Mengapa Stateful Widget disebut memiliki state internal?
+	karena widget ini memiliki objek state yang terkait dengannya. State ini dapat berubah selama aplikasi berjalan, dan perubahan pada state ini akan mempengaruhi tampilan dari widget tersebut.
+19. Berikan contoh penggunaan Stateless Widget dalam pembuatan aplikasi Flutter.
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Coding Flutter'),
+          ),
+          body: const ShowTextWidget(
+              text: 'Belajar Coding Flutter bersama Teknik Informatika UNISNU'),
+        ));
+  }
+}
+
+class ShowTextWidget extends StatelessWidget {
+  final String text;
+  const ShowTextWidget({super.key, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text);
+  }
+}
+
+20. Berikan contoh penggunaan Stateful Widget dalam pembuatan aplikasi Flutter beserta alasan penggunaannya.
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Coding Flutter'),
+          ),
+          body: const ChangeTimeWidget(),
+        ));
+  }
+}
+
+class ChangeTimeWidget extends StatefulWidget {
+  const ChangeTimeWidget({super.key});
+
+  @override
+  State<ChangeTimeWidget> createState() => _ChangeTimeWidgetState();
+}
+
+class _ChangeTimeWidgetState extends State<ChangeTimeWidget> {
+  DateTime time = DateTime.now();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('Jam Sekarang: $time'),
+        ElevatedButton(
+          onPressed: () {
+            setState(() {
+              time = DateTime.now();
+            });
+          },
+          child: const Text('Perbarui Waktu'),
+        ),
+      ],
+    );
+  }
+}
+
+	
+	
